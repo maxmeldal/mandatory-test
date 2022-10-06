@@ -21,12 +21,7 @@ jobs:
       # Then run your tests!
       - run:
           name: test
-          command: mvn test
-      - run:
-          name: create-dir
-          command: mkdir test-results
-      - store_test_results:
-          path: test-results
+          command: mvn clean install test surefire-report:report
 
 workflows:
   # Below is the definition of your workflow.
