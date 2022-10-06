@@ -23,7 +23,7 @@ jobs:
           name: test
           command: mvn test
       - store_test_results:
-          path: test
+          path: src/test
 
 workflows:
   # Below is the definition of your workflow.
