@@ -15,7 +15,7 @@ public class PhoneNumberService {
         // gets number of remaining digits to be added
         int index = 8 - phoneNumber.length();
 
-        // concats a random int until string has 8 digits
+        // concatenates a random int until string has 8 digits
         for (int i = 0; i < index; i++) {
             phoneNumber += String.valueOf(r.nextInt(10));
         }
