@@ -9,14 +9,18 @@ public class PhoneNumberService {
 
     public int generatePhoneNumber(){
         Random r = new Random();
+
+        // instantiates a string and adds the start of the phone number
         String phoneNumber = String.valueOf(START_NUMBERS[r.nextInt(START_NUMBERS.length)]);
 
+        // gets number of remaining digits to be added
         int index = 8 - phoneNumber.length();
 
+        // concats a random int until string has 8 digits
         for (int i = 0; i < index; i++) {
             phoneNumber += String.valueOf(r.nextInt(10));
         }
-
+        // returns phone number as an int
         return Integer.parseInt(phoneNumber);
     }
 
