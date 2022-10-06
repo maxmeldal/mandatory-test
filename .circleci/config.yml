@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: "run maven"
-          command: "mvn clean package"
+          command: "package"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
