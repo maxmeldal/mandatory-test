@@ -41,7 +41,7 @@ class NameAndGenderServiceTest {
             "Male",
             "MALE",
             "m",
-            "Mf",
+            "M",
     })
     void test_correct_gender_male(String gender){
         var result = sut.getRandomName(gender);
