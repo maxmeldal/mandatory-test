@@ -23,7 +23,7 @@ jobs:
           name: test
           command: mvn test
       - store_test_results:
-          path: src/test
+          path: target/surefire-reports
 
 workflows:
   # Below is the definition of your workflow.
