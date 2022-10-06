@@ -8,6 +8,7 @@ public class MandatoryTestApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MandatoryTestApplication.class, args);
+
     }
 
 }
