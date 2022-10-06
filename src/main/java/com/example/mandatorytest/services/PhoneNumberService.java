@@ -1,6 +1,5 @@
 package com.example.mandatorytest.services;
 
-
 import java.util.Random;
 
 public class PhoneNumberService {
@@ -23,5 +22,4 @@ public class PhoneNumberService {
         // returns phone number as an int
         return Integer.parseInt(phoneNumber);
     }
-
 }
