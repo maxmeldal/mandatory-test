@@ -16,12 +16,16 @@ jobs:
       - checkout
       # Use mvn clean and package as the standard maven build phase
       - run:
-          name: Build
+          name: build
           command: mvn clean package
       # Then run your tests!
       - run:
-          name: Test
-          command: mvn test
+          name: create-dir
+          command: |
+            mkdir test-results; \
+            docker run \
+            --env=JUNIT_REPORT_DIR=/src/test-results \
+            --env=AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
       - store_test_results:
           path: test-results
 
