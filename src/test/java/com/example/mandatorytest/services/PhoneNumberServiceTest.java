@@ -28,8 +28,9 @@ class PhoneNumberServiceTest {
         boolean correctPrefix = false;
 
         for (int number : PhoneNumberService.START_NUMBERS) {
-            if(phoneNumber.startsWith(String.valueOf(number))){
+            if (phoneNumber.startsWith(String.valueOf(number))) {
                 correctPrefix = true;
+                break;
             }
         }
         assertTrue(correctPrefix);
