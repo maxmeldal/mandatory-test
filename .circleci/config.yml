@@ -21,7 +21,10 @@ jobs:
       # Then run your tests!
       - run:
           name: test
-          command: mvn clean install test surefire-report:report
+          command: mvn test
+      - store_test_results:
+          path: test-results
+
 
 workflows:
   # Below is the definition of your workflow.
