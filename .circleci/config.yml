@@ -14,3 +14,5 @@ workflows:
       - maven/test:
           command: '-X compile'
           executor: java17
+      - store_test_results:
+          path: test-results
