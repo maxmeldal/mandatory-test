@@ -8,13 +8,15 @@ public class Main {
 
         var personRegister = new PersonRegister();
 
-        //personRegister.birthDayGenerator();
+        for (int i = 0; i < 1000; i++) {
 
-        for (int i = 0; i < 1000; i++ ) {
-
-            System.out.println(personRegister.randomWithRange(1, 30));
+            personRegister.birthDayGenerator();
 
         }
+
+
+
+
 
     }
 
