@@ -103,6 +103,20 @@ class AddressServiceTest {
 
     //Tests of the getAdress() function
 
+    @RepeatedTest(20)
+    void test_get_address_is_not_null() throws Exception {
+        String adress = sut.getAdress();
+        assertNotNull(adress);
+    }
+
+    @RepeatedTest(20)
+    void test_get_adress_is_inside_scope() throws Exception {
+        String adress = sut.getAdress();
+        String[] parts = adress.split(" / ", 2);
+        System.out.println(parts[1]);
+        assertTrue(parts[0].matches("[1-9][0-9][0-9][0-9]") && parts[1].matches("[a-zA-ZæøåÆØÅ][a-zA-ZæøåÆØÅ. ]+"));
+    }
+
 
 
 
