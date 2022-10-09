@@ -3,6 +3,7 @@ package com.example.mandatorytest.services;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 
 import static org.junit.Assert.assertEquals;
@@ -22,11 +23,14 @@ public class PersonRegisterTests {
     }
 
     @ParameterizedTest
-    @CsvSource({"F"})
-    <T> void GenerateCPR_PositiveCases_Pass (T expectedResult){
+    @CsvSource({
+    "F, F",
+    "M, M",
+    "K, K"})
+    <T> void GenerateCPR_PositiveScenario_Pass (String input, T expectedResult){
 
         // Act
-        var result = PR.GetCPR("F");
+        var result = PR.GetCPR(input);
 
         // Assert
         assertEquals(expectedResult, result);
