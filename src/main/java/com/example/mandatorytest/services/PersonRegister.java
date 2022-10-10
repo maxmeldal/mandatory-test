@@ -29,6 +29,12 @@ public class PersonRegister {
         DECEMBER
     }
 
+    public PersonRegister() {
+
+        birthDayGenerator();
+
+    }
+
     public String GetCPR(String sex) {
 
 
@@ -46,35 +52,59 @@ public class PersonRegister {
 
     }
 
-    public void birthDayGenerator() {
+
+    public String GetBirthDate() {
+
+        // Return the birthdate in format DD:MM:YY
+
+        return MessageFormat.format("{0} {1}{2, number, #}", day, month, year);
+
+    }
+
+    private void generateCPR(String sex) {
+
+        
+
+        if (sex == "F") {
+
+        }
+
+    }
+
+
+    private void birthDayGenerator() {
 
         // PICK A RANDOM MONTH based on the enum Months
         // As enums start at index 0. I add + 1.
 
         month = randomEnum().ordinal() + 1;
+
+        // Based on the month pick a RANDOM DATE available in that month
+
         day = generateDayFromMonth(month);
+
+        // PICK A YEAR - 70 to - 18 years from current year.
+
         year = generateRandomYear();
 
-
-        System.out.println(MessageFormat.format("{0} {1}", day, month));
-        System.out.println(year);
-
-        // BASED ON THE MONTH PICK A RANDOM DATA AVAILABLE IN THAT MONTH
-        // PICK A YEAR - 70 to - 18  Years from current year.
-
-
     }
-
-    /*private String generateRandomYearWithoutHundred() {
-
-    }*/
 
     private int generateRandomYear() {
 
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+        // Getting the CURRENT YEAR
+
         int calendarYear = cal.get(Calendar.YEAR);
+
+        // We are interested in an age of MINIMUM 18
+
         int min = calendarYear - 18;
+
+        // We are interested in an age of MAXIMUM 70
+
         int max = calendarYear - 70;
+
         int generateYear = randomWithRange(min, max);
 
 
@@ -132,6 +162,8 @@ public class PersonRegister {
     }
 
     private Months randomEnum() {
+
+        // RETURNS a random index of the month enum, based on its length
 
         return Months.values()[new Random().nextInt(Months.values().length)];
 
