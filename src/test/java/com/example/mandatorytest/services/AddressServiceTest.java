@@ -1,18 +1,7 @@
 package com.example.mandatorytest.services;
 
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.platform.commons.util.StringUtils;
-
-import java.awt.font.NumericShaper;
-import java.time.temporal.ValueRange;
-
-import static java.awt.geom.Path2D.contains;
-import static java.util.EnumSet.allOf;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -58,7 +47,7 @@ class AddressServiceTest {
         assertNotNull(number);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(1000)
     void test_get_number_is_number() {
         String number = String.valueOf(sut.getNumber());
         assertTrue(number.matches(".*\\d.*"));
@@ -96,29 +85,6 @@ class AddressServiceTest {
     void test_get_door_is_inside_scope() {
         String door = sut.getDoor();
         String[] parts = door.split(" ", 2);
-        int low = 1;
-        int high = 50;
         assertTrue(parts[0].matches("th") || parts[0].matches("mf") || parts[0].matches("tv") && parts[1].matches("^([1-9]|[1-4]\\d|50)$"));
     }
-
-    //Tests of the getAdress() function
-
-    @RepeatedTest(20)
-    void test_get_address_is_not_null() throws Exception {
-        String adress = sut.getAdress();
-        assertNotNull(adress);
-    }
-
-    @RepeatedTest(20)
-    void test_get_adress_is_inside_scope() throws Exception {
-        String adress = sut.getAdress();
-        String[] parts = adress.split(" / ", 2);
-        System.out.println(parts[1]);
-        assertTrue(parts[0].matches("[1-9][0-9][0-9][0-9]") && parts[1].matches("[a-zA-ZæøåÆØÅ][a-zA-ZæøåÆØÅ. ]+"));
-    }
-
-
-
-
-
 }

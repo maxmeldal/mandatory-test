@@ -10,37 +10,33 @@ import java.util.Random;
 
 public class AddressService {
 
-    public static String getStreet()
-    {
-        // chose a Character random from this String
+    public String getStreet(){
+        // define scope
         String AlphaNumericString = "abcdefghijklmnopqrstuvxyz";
+        // define number of letters
         int n = 6;
-
-        // create StringBuffer size of AlphaNumericString
+        // create a new string builder with a capacity of n.
         StringBuilder sb = new StringBuilder(n);
+        // create loop that iterate n times and for every iteration will pick a random number from 0 to AlphaNumericString.length and add that letter to our string
         for (int i = 0; i < n; i++) {
-            // generate a random number between
-            // 0 to AlphaNumericString variable length
             int index
                     = (int)(AlphaNumericString.length()
                     * Math.random());
-
-            // add Character one by one in end of sb
             sb.append(AlphaNumericString
                     .charAt(index));
         }
-
         return sb.toString();
     }
 
-    static int getNumber() {
+    public int getNumber() {
+        //
         Random r = new Random();
         int low = 1;
         int high = 999;
         return r.nextInt(high-low) + low;
     }
 
-    static String getfloor() {
+    public String getfloor() {
         Random r = new Random();
         int low = 0;
         int high = 99;
@@ -53,7 +49,7 @@ public class AddressService {
         }
     }
 
-    static String getDoor(){
+    public String getDoor(){
         Random r = new Random();
         String[] floorDirection = {"th", "mf", "tv"};
         int randomIndex = r.nextInt(floorDirection.length);
@@ -63,7 +59,7 @@ public class AddressService {
         return floorDirection[randomIndex] + " "+ floorNumber;
     }
 
-    static String getAdress() throws Exception{
+    public String getAdress() throws Exception{
         String url = "jdbc:mysql://localhost:3306/addresses";
         String uname = "root";
         String pass = "rootroot";
@@ -77,8 +73,6 @@ public class AddressService {
         while (rs.next()){
             postalCodes.add(rs.getString("cPostalCode"));
             townNames.add(rs.getString("cTownName"));
-
-
         }
         st.close();
         con.close();
@@ -90,14 +84,10 @@ public class AddressService {
 
     }
 
-    static String getAllInformation() throws Exception {
+
+    public String getAllInformation() throws Exception {
         return "Address\n" +
                "Street" + "    " + "Number"+ "    " + "Floor" + "    " + "Door" + "    " + "Postal Code / Town\n" +
                 getStreet() + "    " + getNumber() + "       " + getfloor() + "       " + getDoor() + "   " + getAdress();
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        System.out.println(getAllInformation());
     }
 }
