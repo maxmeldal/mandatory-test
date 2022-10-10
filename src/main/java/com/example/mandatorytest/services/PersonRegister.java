@@ -101,7 +101,7 @@ public class PersonRegister {
 
         if (sex == "f" || sex == "female")  {
 
-            newSerialNumber = randomWithRange(2, 9998);
+            newSerialNumber = randomWithRange(2, 9999);
 
             if (newSerialNumber % 2 != 0) {
 
@@ -113,7 +113,7 @@ public class PersonRegister {
 
         if (sex == "m" || sex == "male") {
 
-            newSerialNumber = randomWithRange(2, 9998);
+            newSerialNumber = randomWithRange(1, 9998);
 
             if (newSerialNumber % 2 == 0) {
 
@@ -157,7 +157,6 @@ public class PersonRegister {
         int max = calendarYear - 70;
 
         int generatedYear = randomWithRange(min, max);
-
 
         return generatedYear;
 
@@ -228,11 +227,12 @@ public class PersonRegister {
 
     }
 
-    public int randomWithRange(int min, int max) {
+    private int randomWithRange(int min, int max) {
 
         // RETURNS and random value within the range and including the min and max
 
         int range = (max - min) + 1;
+
         return (int)(Math.random() * range) + min;
 
     }
