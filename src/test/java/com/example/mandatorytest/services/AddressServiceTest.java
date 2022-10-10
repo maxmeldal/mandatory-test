@@ -47,7 +47,7 @@ class AddressServiceTest {
         assertNotNull(number);
     }
 
-    @RepeatedTest(1000)
+    @RepeatedTest(20)
     void test_get_number_is_number() {
         String number = String.valueOf(sut.getNumber());
         assertTrue(number.matches(".*\\d.*"));
