@@ -16,6 +16,8 @@ import org.json.simple.parser.ParseException;
 public class NameAndGenderService {
 
     public NameAndGender getRandomName(String gender){
+        // Null check on input
+        if (gender==null) throw new NullPointerException("Input cannot be null.");
 
         // Convert input to lowercase
         gender = gender.toLowerCase();
@@ -23,7 +25,7 @@ public class NameAndGenderService {
         // Check if input is not male or female
         if(gender.equals("m")) gender = "male";
         else if(gender.equals("f")) gender = "female";
-        if(!gender.equals("male") && !gender.equals("female")) throw new IllegalArgumentException("Input must be 'male' or 'female', not case-sensitive");
+        if(!gender.equals("male") && !gender.equals("female")) throw new IllegalArgumentException("Input must be 'male' or 'female', not case-sensitive.");
 
         // Get list of objects
         var persons = getNameAndGenderList();
