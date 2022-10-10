@@ -34,7 +34,7 @@ public class PersonRegister {
         // PICK A RANDOM MONTH based on the enum Months
         // As enums start at index 0. I add + 1.
 
-        this.month = randomEnum().ordinal() + 1;
+        this.month = generatedMonth();
 
         // Based on the month pick a RANDOM DATE available in that month
 
@@ -220,11 +220,15 @@ public class PersonRegister {
 
     }
 
-    private Months randomEnum() {
+    private int generatedMonth() {
 
         // RETURNS a random index of the month enum, based on its length
 
-        return Months.values()[new Random().nextInt(Months.values().length)];
+        Months randomMonthsIndex = Months.values()[new Random().nextInt(Months.values().length)];
+
+        int generatedMonth = randomMonthsIndex.ordinal() + 1;
+
+        return generatedMonth;
 
     }
 
