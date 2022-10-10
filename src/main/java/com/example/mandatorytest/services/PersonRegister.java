@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Random;
 import java.util.TimeZone;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PersonRegister {
 
@@ -31,7 +32,7 @@ public class PersonRegister {
     public PersonRegister(String sex) {
 
         this.month = generateRandomMonth();
-        this.day = generateRandomDayFromMonth();
+        this.day = generateRandomDayFromMonth(this.month);
         this.year = generateRandomYear();
         this.serialNumber = generateSerialNumber(sex);
         this.CPR = formatCPR();
@@ -148,21 +149,21 @@ public class PersonRegister {
 
         int calendarYear = cal.get(Calendar.YEAR);
 
-        // We are interested in an age of MINIMUM 18
-
-        int min = calendarYear - 18;
-
         // We are interested in an age of MAXIMUM 70
 
         int max = calendarYear - 70;
 
-        int generatedYear = randomWithRange(min, max);
+        // We are interested in an age of MINIMUM 18
+
+        int min = calendarYear - 18;
+
+        int generatedYear = randomWithRange(max, min);
 
         return generatedYear;
 
     }
 
-    private int generateRandomDayFromMonth() {
+    private int generateRandomDayFromMonth(int month) {
 
         // Based on the month pick a RANDOM DATE available in that month
 
@@ -173,39 +174,51 @@ public class PersonRegister {
             case 1:
                 // Days in January 1-31
                 generatedDay = randomWithRange(1, 31);
+                break;
             case 2:
                 // Days in February 1-28
                 generatedDay = randomWithRange(1, 28);
+                break;
             case 3:
                 // Days in March 1-31
                 generatedDay = randomWithRange(1, 31);
+                break;
             case 4:
                 // Days in April 1-30
                 generatedDay = randomWithRange(1, 30);
+                break;
             case 5:
                 // Days in May 1-31
                 generatedDay = randomWithRange(1, 31);
+                break;
             case 6:
                 // Days in June 1-30
                 generatedDay = randomWithRange(1, 30);
+                break;
             case 7:
                 // Days in July 1-31
                 generatedDay = randomWithRange(1, 31);
+                break;
             case 8:
                 // Days in August 1-31
                 generatedDay = randomWithRange(1, 31);
+                break;
             case 9:
                 // Days in September 1-30
                 generatedDay = randomWithRange(1, 30);
+                break;
             case 10:
                 // Days in October 1-31
                 generatedDay = randomWithRange(1, 31);
+                break;
             case 11:
                 // Days in November 1-30
                 generatedDay = randomWithRange(1, 30);
+                break;
             case 12:
                 // Days in December 1-31
                 generatedDay = randomWithRange(1, 31);
+                break;
 
         }
 
@@ -231,9 +244,19 @@ public class PersonRegister {
 
         // RETURNS and random value within the range and including the min and max
 
-        int range = (max - min) + 1;
+        /*// + 1
 
-        return (int)(Math.random() * range) + min;
+        int range = (max - min);
+
+        // + min
+
+        return (int)(Math.random() * range) + min ;*/
+
+        Random rn = new Random();
+        int range = max - min + 1;
+        int randomNum =  rn.nextInt(range) + min;
+
+        return randomNum;
 
     }
 
