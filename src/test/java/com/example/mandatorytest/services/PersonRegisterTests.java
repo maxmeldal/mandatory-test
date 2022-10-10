@@ -18,7 +18,7 @@ public class PersonRegisterTests {
     }
     
     @RepeatedTest(1000)
-    void GenerateSerialNumber_IsFemale_isEVEN (){
+    void GenerateSerialNumber_Female_isEVEN (){
 
         var PR = new PersonRegister("f");
 
@@ -33,7 +33,7 @@ public class PersonRegisterTests {
     }
 
     @RepeatedTest(1000)
-    void GenerateSerialNumber_IsMale_isODD (){
+    void GenerateSerialNumber_Male_isODD (){
 
         var PR = new PersonRegister("m");
 
@@ -50,7 +50,7 @@ public class PersonRegisterTests {
     // Testing that Month Range is within 1 to 12
 
     @RepeatedTest(1000)
-    void GeneratedMonth_Within1To12Months_IsTrue() {
+    void GeneratedMonth_JanuaryToDecember_IsTrue() {
 
         // Act
 
@@ -68,7 +68,7 @@ public class PersonRegisterTests {
     }
 
     @RepeatedTest(1000)
-    void GeneratedDate_WithinMonth_isTrue() {
+    void GeneratedDay_isWithinMonth_isTrue() {
 
         var month = PR.GetBirthMonth();
         var day = PR.GetBirthDay();
