@@ -21,25 +21,6 @@ class NameAndGenderServiceTest {
             "male",
             "Male",
             "MALE",
-            "female",
-            "Female",
-            "FEMALE",
-            "m",
-            "M",
-            "f",
-            "F"
-    })
-    void test_not_null_with_correct_input(String gender) {
-        var result = sut.getRandomName(gender);
-
-        assertNotNull(result);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "male",
-            "Male",
-            "MALE",
             "m",
             "M",
     })
@@ -74,5 +55,11 @@ class NameAndGenderServiceTest {
     void test_assert_throws_exception_with_bad_input(String gender){
         assertThrows(IllegalArgumentException.class,
                 ()->sut.getRandomName(gender));
+    }
+
+    @Test
+    void test_null_value_returns_null_pointer_exception(){
+        assertThrows(NullPointerException.class,
+                ()->sut.getRandomName(null));
     }
 }
