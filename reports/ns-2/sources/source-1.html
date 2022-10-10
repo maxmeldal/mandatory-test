@@ -1,0 +1,206 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AddressService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.mandatorytest.services</a>
+</div>
+
+<h1>Coverage Summary for Class: AddressService (com.example.mandatorytest.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddressService</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/51)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.mandatorytest.services;
+&nbsp;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.DriverManager;
+&nbsp;import java.sql.ResultSet;
+&nbsp;import java.sql.Statement;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Random;
+&nbsp;
+<b class="nc">&nbsp;public class AddressService {</b>
+&nbsp;
+&nbsp;    public static String getStreet()
+&nbsp;    {
+&nbsp;        // chose a Character random from this String
+<b class="nc">&nbsp;        String AlphaNumericString = &quot;abcdefghijklmnopqrstuvxyz&quot;;</b>
+<b class="nc">&nbsp;        int n = 6;</b>
+&nbsp;
+&nbsp;        // create StringBuffer size of AlphaNumericString
+<b class="nc">&nbsp;        StringBuilder sb = new StringBuilder(n);</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; n; i++) {</b>
+&nbsp;            // generate a random number between
+&nbsp;            // 0 to AlphaNumericString variable length
+<b class="nc">&nbsp;            int index</b>
+<b class="nc">&nbsp;                    = (int)(AlphaNumericString.length()</b>
+<b class="nc">&nbsp;                    * Math.random());</b>
+&nbsp;
+&nbsp;            // add Character one by one in end of sb
+<b class="nc">&nbsp;            sb.append(AlphaNumericString</b>
+<b class="nc">&nbsp;                    .charAt(index));</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return sb.toString();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    static int getNumber() {
+<b class="nc">&nbsp;        Random r = new Random();</b>
+<b class="nc">&nbsp;        int low = 1;</b>
+<b class="nc">&nbsp;        int high = 999;</b>
+<b class="nc">&nbsp;        return r.nextInt(high-low) + low;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    static String getfloor() {
+<b class="nc">&nbsp;        Random r = new Random();</b>
+<b class="nc">&nbsp;        int low = 0;</b>
+<b class="nc">&nbsp;        int high = 99;</b>
+<b class="nc">&nbsp;        String floor = String.valueOf(r.nextInt(high-low) + low);</b>
+&nbsp;
+<b class="nc">&nbsp;        if (floor.equals(&quot;0&quot;)){</b>
+<b class="nc">&nbsp;            return &quot;st&quot;;</b>
+&nbsp;        }else {
+<b class="nc">&nbsp;            return floor;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    static String getDoor(){
+<b class="nc">&nbsp;        Random r = new Random();</b>
+<b class="nc">&nbsp;        String[] floorDirection = {&quot;th&quot;, &quot;mf&quot;, &quot;tv&quot;};</b>
+<b class="nc">&nbsp;        int randomIndex = r.nextInt(floorDirection.length);</b>
+<b class="nc">&nbsp;        int low = 1;</b>
+<b class="nc">&nbsp;        int high = 50;</b>
+<b class="nc">&nbsp;        String floorNumber = String.valueOf(r.nextInt(high-low) + low);</b>
+<b class="nc">&nbsp;        return floorDirection[randomIndex] + &quot; &quot;+ floorNumber;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    static String getAdress() throws Exception{
+<b class="nc">&nbsp;        String url = &quot;jdbc:mysql://localhost:3306/addresses&quot;;</b>
+<b class="nc">&nbsp;        String uname = &quot;root&quot;;</b>
+<b class="nc">&nbsp;        String pass = &quot;rootroot&quot;;</b>
+<b class="nc">&nbsp;        Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</b>
+<b class="nc">&nbsp;        Connection con = DriverManager.getConnection(url, uname, pass);</b>
+<b class="nc">&nbsp;        Statement st = con.createStatement();</b>
+<b class="nc">&nbsp;        String query = &quot;select cPostalCode, cTownName from postal_code&quot;;</b>
+<b class="nc">&nbsp;        ResultSet rs = st.executeQuery(query);</b>
+<b class="nc">&nbsp;        List&lt;String&gt; postalCodes=new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        List&lt;String&gt; townNames=new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        while (rs.next()){</b>
+<b class="nc">&nbsp;            postalCodes.add(rs.getString(&quot;cPostalCode&quot;));</b>
+<b class="nc">&nbsp;            townNames.add(rs.getString(&quot;cTownName&quot;));</b>
+&nbsp;
+&nbsp;
+&nbsp;        }
+<b class="nc">&nbsp;        st.close();</b>
+<b class="nc">&nbsp;        con.close();</b>
+<b class="nc">&nbsp;        Random r = new Random();</b>
+<b class="nc">&nbsp;        int low = 1;</b>
+<b class="nc">&nbsp;        int high = 589;</b>
+<b class="nc">&nbsp;        int randomNumber = r.nextInt(high - low) + low;</b>
+<b class="nc">&nbsp;        return postalCodes.get(randomNumber) + &quot; / &quot; + townNames.get(randomNumber);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    static String getAllInformation() throws Exception {
+&nbsp;        return &quot;Address\n&quot; +
+&nbsp;               &quot;Street&quot; + &quot;    &quot; + &quot;Number&quot;+ &quot;    &quot; + &quot;Floor&quot; + &quot;    &quot; + &quot;Door&quot; + &quot;    &quot; + &quot;Postal Code / Town\n&quot; +
+<b class="nc">&nbsp;                getStreet() + &quot;    &quot; + getNumber() + &quot;       &quot; + getfloor() + &quot;       &quot; + getDoor() + &quot;   &quot; + getAdress();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public static void main(String[] args) throws Exception {
+<b class="nc">&nbsp;        System.out.println(getAllInformation());</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-10-09 21:56</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PhoneNumberService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.mandatorytest.services</a>
+</div>
+
+<h1>Coverage Summary for Class: PhoneNumberService (com.example.mandatorytest.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PhoneNumberService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.mandatorytest.services;
+&nbsp;
+&nbsp;import java.util.Random;
+&nbsp;
+<b class="fc">&nbsp;public class PhoneNumberService {</b>
+&nbsp;
+<b class="fc">&nbsp;    public static final int[] START_NUMBERS = {2, 30, 31, 40, 41, 42, 50, 51, 52, 53, 60, 61, 71, 81, 91, 92, 93, 342, 344, 345, 346, 347, 348, 349, 356, 357, 359, 362, 365, 366, 389, 398, 431, 441, 462, 466,  468,  472,  474,  476,  478,  485, 486,  488, 489,  493, 494, 496, 496,  498, 499,  542, 543,  545,  551, 552, 556, 571, 572, 573, 574, 577, 579, 584, 586, 587, 589, 597, 598, 627, 629, 641, 649, 658, 662, 663, 664, 665, 667, 692, 693, 694, 697, 771, 772, 782, 783, 785, 786, 788, 789, 826, 827, 829};</b>
+&nbsp;
+&nbsp;    public int generatePhoneNumber(){
+<b class="fc">&nbsp;        Random r = new Random();</b>
+&nbsp;
+&nbsp;        // instantiates a string and adds the start of the phone number
+<b class="fc">&nbsp;        String phoneNumber = String.valueOf(START_NUMBERS[r.nextInt(START_NUMBERS.length)]);</b>
+&nbsp;
+&nbsp;        // gets number of remaining digits to be added
+<b class="fc">&nbsp;        int index = 8 - phoneNumber.length();</b>
+&nbsp;
+&nbsp;        // concatenates a random int until string has 8 digits
+<b class="fc">&nbsp;        for (int i = 0; i &lt; index; i++) {</b>
+<b class="fc">&nbsp;            phoneNumber += String.valueOf(r.nextInt(10));</b>
+&nbsp;        }
+&nbsp;        // returns phone number as an int
+<b class="fc">&nbsp;        return Integer.parseInt(phoneNumber);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-10-09 21:56</div>
+</div>
+</body>
+</html>
