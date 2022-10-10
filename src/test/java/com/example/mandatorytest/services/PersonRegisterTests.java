@@ -4,22 +4,38 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PersonRegisterTestsMale {
+public class PersonRegisterTests {
 
     PersonRegister PR;
 
     @BeforeEach
     void setUp(){
-        PR = new PersonRegister("m");
+        PR = new PersonRegister("f");
+    }
+    
+    @RepeatedTest(1000)
+    void GenerateSerialNumber_IsFemale_isEVEN (){
+
+        var PR = new PersonRegister("f");
+
+        // Acts
+        var result = PR.GetSerialNumber() % 2;
+
+        var expectedResult = 0;
+
+        // Assert
+        assertEquals(expectedResult, result);
+
     }
 
-
-
     @RepeatedTest(1000)
-    void GenerateSerialNumber_IsODD_isTrue (){
+    void GenerateSerialNumber_IsMale_isODD (){
+
+        var PR = new PersonRegister("m");
 
         // Acts
         var result = PR.GetSerialNumber() % 2;
@@ -111,5 +127,20 @@ public class PersonRegisterTestsMale {
         }
 
     }
+
+
+   /* @ParameterizedTest
+    <T> void GenerateCPR_NegativeCases_Fail (T expectedResult){
+
+        // Act
+
+        // Assert
+
+        assertNotNull(expectedResult);
+
+        @CsvSource({
+    "F, 0"})
+
+    }*/
 
 }
