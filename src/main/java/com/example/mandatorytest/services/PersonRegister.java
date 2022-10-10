@@ -164,10 +164,10 @@ public class PersonRegister {
 
         int max = calendarYear - 70;
 
-        int generateYear = randomWithRange(min, max);
+        int generatedYear = randomWithRange(min, max);
 
 
-        return generateYear;
+        return generatedYear;
 
     }
 
