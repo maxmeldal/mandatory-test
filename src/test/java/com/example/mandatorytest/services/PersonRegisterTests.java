@@ -17,9 +17,6 @@ public class PersonRegisterTests {
     @BeforeEach
     void setUp(){
 
-        // Arrange
-        PR = new PersonRegister();
-
     }
 
     @ParameterizedTest
@@ -29,11 +26,14 @@ public class PersonRegisterTests {
     "K, K"})
     <T> void GenerateCPR_PositiveScenario_Pass (String input, T expectedResult){
 
-        // Act
+        // Arrange
+        PR = new PersonRegister(input);
+
+       /* // Act
         var result = PR.GetCPR(input);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result);*/
 
     }
 

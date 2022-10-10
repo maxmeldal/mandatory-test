@@ -6,11 +6,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        var personRegister = new PersonRegister();
+        var personRegister = new PersonRegister("F");
 
+        System.out.println(personRegister.GetBirthDate());
 
-
-
+        System.out.println(personRegister.GetCPR());
 
     }
 
