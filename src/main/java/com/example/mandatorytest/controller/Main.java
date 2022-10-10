@@ -11,7 +11,7 @@ public class Main {
 
         for (int i = 0; i < 1000; i++) {
 
-            var personRegister = new PersonRegister("f");
+            var personRegister = new PersonRegister("m");
 
             System.out.println(personRegister.GetBirthDate());
 

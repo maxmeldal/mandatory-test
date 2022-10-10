@@ -38,7 +38,7 @@ public class PersonRegister {
 
         // Based on the month pick a RANDOM DATE available in that month
 
-        this.day = generateDayFromMonth(month);
+        this.day = generateDayFromMonth();
 
         // PICK A YEAR - 70 to - 18 years from current year.
 
@@ -171,7 +171,7 @@ public class PersonRegister {
 
     }
 
-    private int generateDayFromMonth(int month) {
+    private int generateDayFromMonth() {
 
         int generatedDay = 0;
 
