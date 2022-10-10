@@ -13,7 +13,7 @@ jobs:
       - run:
           name: build
           command: mvn clean package
-      # Then run your tests!
+      # run tests
       - run:
           name: test
           command: mvn test
