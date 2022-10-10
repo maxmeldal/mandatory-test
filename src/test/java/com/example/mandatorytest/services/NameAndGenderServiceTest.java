@@ -21,25 +21,6 @@ class NameAndGenderServiceTest {
             "male",
             "Male",
             "MALE",
-            "female",
-            "Female",
-            "FEMALE",
-            "m",
-            "M",
-            "f",
-            "F"
-    })
-    void test_not_null_with_correct_input(String gender) {
-        var result = sut.getRandomName(gender);
-
-        assertNotNull(result);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "male",
-            "Male",
-            "MALE",
             "m",
             "M",
     })
