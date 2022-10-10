@@ -2,7 +2,6 @@ package com.example.mandatorytest.services;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 import java.util.TimeZone;
 
@@ -13,7 +12,6 @@ public class PersonRegister {
     private int day;
     private int month;
     private int year;
-    private String yearWithoutHundred;
     private enum Months {
         JANUARY,
         FEBRUARY,
@@ -29,24 +27,14 @@ public class PersonRegister {
         DECEMBER
     }
 
-    public PersonRegister() {
+    public PersonRegister(String sex) {
 
         birthDayGenerator();
+        generateCPR(sex);
 
     }
 
-    public String GetCPR(String sex) {
-
-
-        int serialNumber;
-
-
-        if (sex == "F") {
-
-        }
-
-
-        CPR = MessageFormat.format("{0}", sex);
+    public String GetCPR() {
 
         return CPR;
 
@@ -57,17 +45,45 @@ public class PersonRegister {
 
         // Return the birthdate in format DD:MM:YY
 
-        return MessageFormat.format("{0} {1}{2, number, #}", day, month, year);
+        return birtDate;
 
     }
 
     private void generateCPR(String sex) {
 
-        
+        int serialNumber = 1000;
 
         if (sex == "F") {
 
+            serialNumber = randomWithRange(1000, 9998);
+
+            if (serialNumber % 2 == 0) {
+                serialNumber =+ 1;
+            }
+
         }
+
+        if (sex == "M") {
+
+            serialNumber = randomWithRange(1000, 9999);
+
+            if (serialNumber % 2 != 0) {
+
+                serialNumber =- 1;
+
+            }
+
+        }
+
+        String formattedDay = String.format("%02d", day);
+
+        String formattedMonth = String.format("%02d", month);
+
+        String yearString = String.valueOf(year);
+
+        String yearWithoutHundred = yearString.substring(2, 4);
+
+        CPR = MessageFormat.format("{0}{1}{2}{3,number,#}", formattedDay, formattedMonth, yearWithoutHundred, serialNumber);
 
     }
 
@@ -86,6 +102,8 @@ public class PersonRegister {
         // PICK A YEAR - 70 to - 18 years from current year.
 
         year = generateRandomYear();
+
+        birtDate = MessageFormat.format("{0} {1}{2, number, #}", day, month, year);
 
     }
 
@@ -170,6 +188,8 @@ public class PersonRegister {
     }
 
     public int randomWithRange(int min, int max) {
+
+        // RETURNS and random value within the range and including the min and max
 
         int range = (max - min) + 1;
         return (int)(Math.random() * range) + min;
