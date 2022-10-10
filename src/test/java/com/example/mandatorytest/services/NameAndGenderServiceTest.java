@@ -56,4 +56,10 @@ class NameAndGenderServiceTest {
         assertThrows(IllegalArgumentException.class,
                 ()->sut.getRandomName(gender));
     }
+
+    @Test
+    void test_null_value_returns_null_pointer_exception(){
+        assertThrows(NullPointerException.class,
+                ()->sut.getRandomName(null));
+    }
 }
