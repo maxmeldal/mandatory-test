@@ -12,7 +12,15 @@ public class Main {
 
         System.out.println(personRegister.GetCPR());
 
-        //personRegister.generateCPR("F");
+        System.out.println(personRegister.GetSerialNumber());
+
+
+        for (int i = 0; i < 1000; i++) {
+
+
+
+        }
+
 
     }
 

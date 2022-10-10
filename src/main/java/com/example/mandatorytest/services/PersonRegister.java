@@ -7,6 +7,7 @@ import java.util.TimeZone;
 
 public class PersonRegister {
 
+    private int serialNumber;
     private String CPR;
     private String birtDate;
     private int day;
@@ -30,15 +31,12 @@ public class PersonRegister {
     public PersonRegister(String sex) {
 
         this.birtDate = birthDayGenerator();
-        this.CPR = generateCPR(sex);
+        this.serialNumber = generateSerialNumber(sex);
+        this.CPR = generateCPR();
 
     }
 
-    public String GetCPR() {
 
-        return CPR;
-
-    }
 
 
     public String GetBirthDate() {
@@ -49,21 +47,36 @@ public class PersonRegister {
 
     }
 
-    private String generateCPR(String sex) {
+    public int GetBirthDay () {
 
-        int serialNumber = 0;
+        return day;
+    }
 
-        if (sex == "F") {
+    public int GetBirthMonth() {
 
-            serialNumber = randomWithRange(2, 9998);
+        return month;
 
-            if (serialNumber % 2 == 0) {
+    }
 
-                serialNumber++;
+    public int GetBirthYear() {
 
-            }
+        return year;
 
-        }
+    }
+
+    public int GetSerialNumber() {
+
+        return serialNumber;
+
+    }
+
+    public String GetCPR() {
+
+        return CPR;
+
+    }
+
+    private String generateCPR() {
 
         String formattedDay = String.format("%02d", day);
 
@@ -78,6 +91,39 @@ public class PersonRegister {
         String formattedCPR = MessageFormat.format("{0}{1}{2}{3}", formattedDay, formattedMonth, yearWithoutHundred, formattedSerialNumber);
 
         return formattedCPR;
+
+    }
+
+
+    private int generateSerialNumber(String sex) {
+
+        int newSerialNumber = 0;
+
+        if (sex == "F") {
+
+            newSerialNumber = randomWithRange(2, 9998);
+
+            if (newSerialNumber % 2 == 0) {
+
+                newSerialNumber++;
+
+            }
+
+        }
+
+        if (sex == "M") {
+
+            newSerialNumber = randomWithRange(2, 9998);
+
+            if (newSerialNumber % 2 != 0) {
+
+                newSerialNumber--;
+
+            }
+
+        }
+
+        return newSerialNumber;
 
     }
 
