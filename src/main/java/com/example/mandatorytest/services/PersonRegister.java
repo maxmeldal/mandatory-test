@@ -29,8 +29,8 @@ public class PersonRegister {
 
     public PersonRegister(String sex) {
 
-        birthDayGenerator();
-        generateCPR(sex);
+        this.birtDate = birthDayGenerator();
+        this.CPR = generateCPR(sex);
 
     }
 
@@ -49,27 +49,17 @@ public class PersonRegister {
 
     }
 
-    private void generateCPR(String sex) {
+    private String generateCPR(String sex) {
 
-        int serialNumber = 1000;
+        int serialNumber = 0;
 
         if (sex == "F") {
 
-            serialNumber = randomWithRange(1000, 9998);
+            serialNumber = randomWithRange(2, 9998);
 
             if (serialNumber % 2 == 0) {
-                serialNumber =+ 1;
-            }
 
-        }
-
-        if (sex == "M") {
-
-            serialNumber = randomWithRange(1000, 9999);
-
-            if (serialNumber % 2 != 0) {
-
-                serialNumber =- 1;
+                serialNumber++;
 
             }
 
@@ -79,16 +69,20 @@ public class PersonRegister {
 
         String formattedMonth = String.format("%02d", month);
 
+        String formattedSerialNumber = String.format("%04d", serialNumber);
+
         String yearString = String.valueOf(year);
 
         String yearWithoutHundred = yearString.substring(2, 4);
 
-        CPR = MessageFormat.format("{0}{1}{2}{3,number,#}", formattedDay, formattedMonth, yearWithoutHundred, serialNumber);
+        String formattedCPR = MessageFormat.format("{0}{1}{2}{3}", formattedDay, formattedMonth, yearWithoutHundred, formattedSerialNumber);
+
+        return formattedCPR;
 
     }
 
 
-    private void birthDayGenerator() {
+    private String birthDayGenerator() {
 
         // PICK A RANDOM MONTH based on the enum Months
         // As enums start at index 0. I add + 1.
@@ -103,7 +97,7 @@ public class PersonRegister {
 
         year = generateRandomYear();
 
-        birtDate = MessageFormat.format("{0} {1}{2, number, #}", day, month, year);
+        return MessageFormat.format("{0} {1}{2, number, #}", day, month, year);
 
     }
 
