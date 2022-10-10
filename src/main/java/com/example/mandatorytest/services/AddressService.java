@@ -115,7 +115,7 @@ public class AddressService {
     }
 
 
-    public String getAllInformation() throws Exception {
+    public String getAllInformation() {
         // return all the information together
         return "Address\n" +
                "Street" + "    " + "Number"+ "    " + "Floor" + "    " + "Door" + "    " + "Postal Code / Town\n" +
