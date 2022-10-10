@@ -2,7 +2,6 @@ package com.example.mandatorytest.services;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.Random;
 import java.util.TimeZone;
 
@@ -31,21 +30,12 @@ public class PersonRegister {
 
     public PersonRegister(String sex) {
 
-        // PICK A RANDOM MONTH based on the enum Months
-        // As enums start at index 0. I add + 1.
-
-        this.month = generatedMonth();
-
-        // Based on the month pick a RANDOM DATE available in that month
-
-        this.day = generateDayFromMonth();
-
-        // PICK A YEAR - 70 to - 18 years from current year.
-
+        this.month = generateRandomMonth();
+        this.day = generateRandomDayFromMonth();
         this.year = generateRandomYear();
-        this.birtDate = birthDayGenerator();
         this.serialNumber = generateSerialNumber(sex);
-        this.CPR = generateCPR();
+        this.CPR = formatCPR();
+        this.birtDate = formatBirthDate();
 
     }
 
@@ -86,7 +76,7 @@ public class PersonRegister {
 
     }
 
-    private String generateCPR() {
+    private String formatCPR() {
 
         String formattedDay = String.format("%02d", day);
 
@@ -138,7 +128,7 @@ public class PersonRegister {
     }
 
 
-    private String birthDayGenerator() {
+    private String formatBirthDate() {
 
         String formattedDay = String.format("%02d", day);
 
@@ -149,6 +139,8 @@ public class PersonRegister {
     }
 
     private int generateRandomYear() {
+
+        // PICK A YEAR - 70 to - 18 years from current year.
 
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
@@ -171,7 +163,9 @@ public class PersonRegister {
 
     }
 
-    private int generateDayFromMonth() {
+    private int generateRandomDayFromMonth() {
+
+        // Based on the month pick a RANDOM DATE available in that month
 
         int generatedDay = 0;
 
@@ -220,11 +214,13 @@ public class PersonRegister {
 
     }
 
-    private int generatedMonth() {
+    private int generateRandomMonth() {
 
-        // RETURNS a random index of the month enum, based on its length
+        // PICK A RANDOM MONTH based on the enum Months
 
         Months randomMonthsIndex = Months.values()[new Random().nextInt(Months.values().length)];
+
+        // As enums start at index 0. I add + 1.
 
         int generatedMonth = randomMonthsIndex.ordinal() + 1;
 
