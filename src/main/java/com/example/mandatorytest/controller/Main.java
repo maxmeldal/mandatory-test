@@ -6,18 +6,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        var personRegister = new PersonRegister("F");
 
-        System.out.println(personRegister.GetBirthDate());
-
-        System.out.println(personRegister.GetCPR());
-
-        System.out.println(personRegister.GetSerialNumber());
 
 
         for (int i = 0; i < 1000; i++) {
 
+            var personRegister = new PersonRegister("f");
 
+            System.out.println(personRegister.GetBirthDate());
+
+            System.out.println(personRegister.GetCPR());
+
+            System.out.println("Modulus: " + personRegister.GetSerialNumber() % 2);
 
         }
 

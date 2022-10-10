@@ -2,6 +2,7 @@ package com.example.mandatorytest.services;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Random;
 import java.util.TimeZone;
 
@@ -30,14 +31,23 @@ public class PersonRegister {
 
     public PersonRegister(String sex) {
 
+        // PICK A RANDOM MONTH based on the enum Months
+        // As enums start at index 0. I add + 1.
+
+        this.month = randomEnum().ordinal() + 1;
+
+        // Based on the month pick a RANDOM DATE available in that month
+
+        this.day = generateDayFromMonth(month);
+
+        // PICK A YEAR - 70 to - 18 years from current year.
+
+        this.year = generateRandomYear();
         this.birtDate = birthDayGenerator();
         this.serialNumber = generateSerialNumber(sex);
         this.CPR = generateCPR();
 
     }
-
-
-
 
     public String GetBirthDate() {
 
@@ -88,7 +98,7 @@ public class PersonRegister {
 
         String yearWithoutHundred = yearString.substring(2, 4);
 
-        String formattedCPR = MessageFormat.format("{0}{1}{2}{3}", formattedDay, formattedMonth, yearWithoutHundred, formattedSerialNumber);
+        String formattedCPR = MessageFormat.format("{0}{1}{2}-{3}", formattedDay, formattedMonth, yearWithoutHundred, formattedSerialNumber);
 
         return formattedCPR;
 
@@ -99,25 +109,25 @@ public class PersonRegister {
 
         int newSerialNumber = 0;
 
-        if (sex == "F") {
-
-            newSerialNumber = randomWithRange(2, 9998);
-
-            if (newSerialNumber % 2 == 0) {
-
-                newSerialNumber++;
-
-            }
-
-        }
-
-        if (sex == "M") {
+        if (sex == "f" || sex == "female")  {
 
             newSerialNumber = randomWithRange(2, 9998);
 
             if (newSerialNumber % 2 != 0) {
 
                 newSerialNumber--;
+
+            }
+
+        }
+
+        if (sex == "m" || sex == "male") {
+
+            newSerialNumber = randomWithRange(2, 9998);
+
+            if (newSerialNumber % 2 == 0) {
+
+                newSerialNumber++;
 
             }
 
@@ -130,20 +140,11 @@ public class PersonRegister {
 
     private String birthDayGenerator() {
 
-        // PICK A RANDOM MONTH based on the enum Months
-        // As enums start at index 0. I add + 1.
+        String formattedDay = String.format("%02d", day);
 
-        month = randomEnum().ordinal() + 1;
+        String formattedMonth = String.format("%02d", month);
 
-        // Based on the month pick a RANDOM DATE available in that month
-
-        day = generateDayFromMonth(month);
-
-        // PICK A YEAR - 70 to - 18 years from current year.
-
-        year = generateRandomYear();
-
-        return MessageFormat.format("{0} {1}{2, number, #}", day, month, year);
+        return MessageFormat.format("{0} {1}{2, number, #}", formattedDay, formattedMonth, year);
 
     }
 
