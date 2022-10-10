@@ -157,7 +157,7 @@ public class PersonRegister {
 
         int min = calendarYear - 18;
 
-        int generatedYear = randomWithRange(max, min);
+        int generatedYear = randomWithRange(min, max);
 
         return generatedYear;
 
@@ -244,19 +244,13 @@ public class PersonRegister {
 
         // RETURNS and random value within the range and including the min and max
 
-        /*// + 1
+        // + 1
 
-        int range = (max - min);
+        int range = (max - min) + 1;
 
         // + min
 
-        return (int)(Math.random() * range) + min ;*/
-
-        Random rn = new Random();
-        int range = max - min + 1;
-        int randomNum =  rn.nextInt(range) + min;
-
-        return randomNum;
+        return (int)(Math.random() * range) + min ;
 
     }
 
