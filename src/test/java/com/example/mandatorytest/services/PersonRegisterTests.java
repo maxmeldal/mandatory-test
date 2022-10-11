@@ -151,7 +151,7 @@ public class PersonRegisterTests {
 
         var result = PR.GetBirthYear();
 
-        // As NAX is in this case the oldest the number will be lower than min (1960 (max) to 2003 (min))
+        // As max is in this case the oldest person the number will be lower than min (1960 (max) to 2003 (min))
 
         assertTrue(result >= max && result <= min);
 
