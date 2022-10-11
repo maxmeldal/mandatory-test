@@ -51,6 +51,21 @@ public class PersonRegisterTests {
 
     }
 
+    @RepeatedTest(1000)
+    void GenerateSerialNumber_WrongINPUT_ReturnsZero (){
+
+        var PR = new PersonRegister("");
+
+        // Acts
+        var result = PR.GetSerialNumber();
+
+        var expectedResult = 0 ;
+
+        // Assert
+        assertEquals(expectedResult, result);
+
+    }
+
     // Testing that Month Range is within 1 to 12
 
     @RepeatedTest(1000)
