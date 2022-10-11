@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 
+import java.text.MessageFormat;
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -16,7 +20,7 @@ public class PersonRegisterTests {
     void setUp(){
         PR = new PersonRegister("f");
     }
-    
+
     @RepeatedTest(1000)
     void GenerateSerialNumber_Female_isEVEN (){
 
@@ -41,6 +45,21 @@ public class PersonRegisterTests {
         var result = PR.GetSerialNumber() % 2;
 
         var expectedResult = 1;
+
+        // Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @RepeatedTest(1000)
+    void GenerateSerialNumber_WrongINPUT_ReturnsZero (){
+
+        var PR = new PersonRegister("");
+
+        // Acts
+        var result = PR.GetSerialNumber();
+
+        var expectedResult = 0 ;
 
         // Assert
         assertEquals(expectedResult, result);
@@ -77,7 +96,7 @@ public class PersonRegisterTests {
 
             case 1:
                 // Days in January 1-31
-                assertTrue(day > 0 && day < 32);
+                Assertions.assertTrue(day > 0 && day < 32);
                 break;
             case 2:
                 // Days in February 1-28
@@ -128,19 +147,57 @@ public class PersonRegisterTests {
 
     }
 
+    @RepeatedTest(1000)
+    void GeneratedYear_Bounds18To70_IsTrue(){
 
-   /* @ParameterizedTest
-    <T> void GenerateCPR_NegativeCases_Fail (T expectedResult){
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
-        // Act
+        // Getting the CURRENT YEAR
 
-        // Assert
+        int calendarYear = cal.get(Calendar.YEAR);
 
-        assertNotNull(expectedResult);
+        // We are interested in an age of MAXIMUM 70
 
-        @CsvSource({
-    "F, 0"})
+        int max = calendarYear - 70;
 
-    }*/
+        // We are interested in an age of MINIMUM 18
+
+        int min = calendarYear - 18;
+
+        var result = PR.GetBirthYear();
+
+        // As max is in this case the oldest person the number will be lower than min (1960 (max) to 2003 (min))
+
+        assertTrue(result >= max && result <= min);
+
+    }
+
+    @RepeatedTest(1000)
+    void GeneratedCPR_MatchesBirthdate_IsTrue() {
+
+        var CPR = PR.GetCPR();
+        var BirthDate = PR.GetBirthDate();
+
+        var cprDay = Integer.parseInt(CPR.substring(0,2));
+        var cprMonth = Integer.parseInt(CPR.substring(2,4));
+        var cprYear = Integer.parseInt(CPR.substring(4,6));
+
+        var result = cprDay + cprMonth + cprYear;
+
+
+        var birthDay = Integer.parseInt(BirthDate.substring(0,2));
+        var birthMonth = Integer.parseInt(BirthDate.substring(3,5));
+        var birthYear = Integer.parseInt(BirthDate.substring(8,10));
+
+        var expected = birthDay + birthMonth + birthYear;
+
+        // The total value of the birthdate is expected to be the same.
+
+        assertEquals(result, expected);
+
+
+    }
+
+
 
 }
